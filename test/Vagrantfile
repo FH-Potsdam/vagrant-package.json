@@ -1,0 +1,22 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+require "../package.json.rb"
+package = Package.new()
+
+puts package.name
+puts package.version
+puts package.description
+puts package.author
+puts package.keywords
+
+
+VAGRANTFILE_API_VERSION = "2"
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+  config.vm.box = "base"
+
+  config.vm.provider :virtualbox do |vb|
+    vb.name = package.name+"-v"+package.version
+  end
+end
