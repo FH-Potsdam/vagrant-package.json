@@ -3,5 +3,9 @@
   "version": "0.0.0",
   "description": "sample package.json file",
   "author": "Paul Vollmer <paul.vollmer@fh-potsdam.de>",
-  "keywords": ["vagrant", "package.json"]
+  "keywords": ["vagrant", "package.json"],
+  "scripts": {
+    "start": "node app.js",
+    "test": "grunt test"
+  }
 }
