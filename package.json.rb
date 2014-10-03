@@ -5,8 +5,24 @@ class Package
 
   def initialize(file = "package.json")
     @file = file
+    puts "==> package: Try to read '#{@file}'"
     json = File.read(file)
     @data = JSON.parse(json)
+  end
+
+  def createScriptAliases(config, bash_profile = ".bash_profile")
+    script = "echo 'Create aliases';"
+
+    # check if the script object exists at the package.json
+    if @data['scripts']
+    for item in @data['scripts']
+      script += "echo 'alias "+item[0]+"=\""+item[1]+"\"\n' >> "+bash_profile
+    end
+    # provision...
+    config.vm.provision :shell, :inline => script
+    else 
+    puts "==> package: Missing script object. Cannot create alias..."
+    end
   end
 
   #def say_hi
