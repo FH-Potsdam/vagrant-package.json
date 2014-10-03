@@ -1,20 +1,22 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
+# require and create package instance
 require "../package.json.rb"
-package = Package.new()
+package = Package.new() # optional you can set the package.json filepath
 
 puts package.name
 puts package.version
 puts package.description
 puts package.author
 puts package.keywords
+# the package.json keys
 
 
 VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-  config.vm.box = "base"
+  config.vm.box = "hashicorp/precise32"
 
   config.vm.provider :virtualbox do |vb|
     vb.name = package.name+"-v"+package.version
