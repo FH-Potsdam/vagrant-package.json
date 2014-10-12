@@ -5,7 +5,7 @@ class Package
 
   def initialize(file = "package.json")
     @file = file
-    puts "==> package: Try to read '#{@file}'"
+    #puts "==> package: Try to read '#{@file}'"
     json = File.read(file)
     @data = JSON.parse(json)
   end
@@ -20,7 +20,7 @@ class Package
     end
     # provision...
     config.vm.provision :shell, :inline => script
-    else 
+    else
     puts "==> package: Missing script object. Cannot create alias..."
     end
   end
